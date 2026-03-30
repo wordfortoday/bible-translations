@@ -1,0 +1,5 @@
+# Raw source XML files (download locally to run the parser, don't commit)
+*.usfx.xml
+*.xml
+node_modules/
+.idea

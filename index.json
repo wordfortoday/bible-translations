@@ -1,0 +1,11 @@
+{
+  "translations": [
+    {
+      "id": "bbe",
+      "name": "Bible in Basic English",
+      "language": "en",
+      "year": 1949,
+      "license": "public-domain"
+    }
+  ]
+}
