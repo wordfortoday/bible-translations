@@ -29,6 +29,13 @@
       "language": "pt",
       "year": 1681,
       "license": "public-domain"
+    },
+    {
+      "id": "luther1912",
+      "name": "Luther Bibel 1912",
+      "language": "de",
+      "year": 1912,
+      "license": "public-domain"
     }
   ]
 }
