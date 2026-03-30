@@ -90,6 +90,7 @@ while ((match = tokenRe.exec(xml)) !== null) {
       currentBookName = "";
     } else if (tag === "/h") {
       collectingName = false;
+      if (currentBookName) currentBookName = currentBookName.trim();
     } else if (tag.startsWith("c ")) {
       // <c id="1"/> — chapter marker
       flushVerse();

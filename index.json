@@ -6,6 +6,15 @@
       "language": "en",
       "year": 1949,
       "license": "public-domain"
+    },
+    {
+      "id": "bes",
+      "name": "Biblia en Español Sencillo",
+      "language": "es",
+      "year": 2018,
+      "license": "CC BY 4.0",
+      "attribution": "© 2018 AudioBiblia.org / Irma Flores",
+      "attributionUrl": "http://creativecommons.org/licenses/by/4.0"
     }
   ]
 }
