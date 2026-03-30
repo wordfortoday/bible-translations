@@ -153,39 +153,54 @@ while ((match = tokenRe.exec(xml)) !== null) {
   const [, tag, text] = match;
 
   if (tag !== undefined) {
-    // <div type='book' osisID='Gen'>
-    if (tag.includes("type='book'") || tag.includes('type="book"')) {
+    // <div type='book' osisID='Gen'> — container format
+    if ((tag.includes("type='book'") || tag.includes('type="book"')) && tag.match(/osisID=['"]([^'"]+)['"]/)) {
       flushVerse();
       flushBook();
       const idMatch = tag.match(/osisID=['"]([^'"]+)['"]/);
       if (idMatch) currentOsisBook = idMatch[1];
     }
-    // <chapter osisID='Gen.1'>
+    // <chapter ...> — container (osisID) or milestone (sID with n attribute)
     else if (tag.startsWith("chapter ")) {
       flushVerse();
-      const idMatch = tag.match(/osisID=['"]([^'"]+)['"]/);
-      if (idMatch) {
-        const parts = idMatch[1].split(".");
-        currentChapter = parts[1];
+      const containerMatch = tag.match(/osisID=['"]([^'"]+)['"]/);
+      const milestoneMatch = tag.match(/\bn=['"](\d+)['"]/);
+      if (containerMatch) {
+        currentChapter = containerMatch[1].split(".")[1];
+      } else if (milestoneMatch) {
+        currentChapter = milestoneMatch[1];
       }
     }
-    // <verse osisID='Gen.1.1'>
-    else if (tag.startsWith("verse ") && !tag.endsWith("/")) {
+    // <verse osisID='Gen.1.1'> — container format (no sID, no self-close)
+    else if (tag.startsWith("verse ") && tag.includes("osisID") && !tag.includes("sID") && !tag.endsWith("/")) {
       flushVerse();
       const idMatch = tag.match(/osisID=['"]([^'"]+)['"]/);
       if (idMatch) {
-        const parts = idMatch[1].split(".");
-        currentVerse = parts[2];
+        currentVerse = idMatch[1].split(".")[2];
         collectingVerse = true;
         verseBuffer = "";
       }
     }
-    // </verse>
+    // <verse osisID='Gen.1.1' sID='...' /> — milestone format start
+    else if (tag.startsWith("verse ") && tag.includes("sID")) {
+      flushVerse();
+      const idMatch = tag.match(/osisID=['"]([^'"]+)['"]/);
+      if (idMatch) {
+        currentVerse = idMatch[1].split(".")[2];
+        collectingVerse = true;
+        verseBuffer = "";
+      }
+    }
+    // <verse eID='...' /> — milestone format end
+    else if (tag.startsWith("verse ") && tag.includes("eID")) {
+      flushVerse();
+    }
+    // </verse> — container format end
     else if (tag === "/verse") {
       flushVerse();
     }
-    // </div> — could be end of book
-    else if (tag === "/div") {
+    // </div> — only flush book for actual book divs, not bookGroup
+    else if (tag === "/div" && currentOsisBook) {
       flushVerse();
       flushBook();
     }

@@ -36,6 +36,13 @@
       "language": "de",
       "year": 1912,
       "license": "public-domain"
+    },
+    {
+      "id": "kjv",
+      "name": "King James Version",
+      "language": "en",
+      "year": 1611,
+      "license": "public-domain"
     }
   ]
 }
