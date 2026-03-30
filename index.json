@@ -15,6 +15,13 @@
       "license": "CC BY 4.0",
       "attribution": "© 2018 AudioBiblia.org / Irma Flores",
       "attributionUrl": "http://creativecommons.org/licenses/by/4.0"
+    },
+    {
+      "id": "ostervald",
+      "name": "Bible Ostervald 1996",
+      "language": "fr",
+      "year": 1996,
+      "license": "public-domain"
     }
   ]
 }
