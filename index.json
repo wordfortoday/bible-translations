@@ -43,6 +43,15 @@
       "language": "en",
       "year": 1611,
       "license": "public-domain"
+    },
+    {
+      "id": "hrbiblija",
+      "name": "Biblija kralja Jakova (Hrvatski)",
+      "language": "hr",
+      "year": 2005,
+      "license": "free-noncommercial",
+      "attribution": "UDRUGA STABLO ŽIVOTA",
+      "attributionUrl": "https://hrbiblija.cc"
     }
   ]
 }
