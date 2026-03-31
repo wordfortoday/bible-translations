@@ -52,6 +52,13 @@
       "license": "free-noncommercial",
       "attribution": "UDRUGA STABLO ŽIVOTA",
       "attributionUrl": "https://hrbiblija.cc"
+    },
+    {
+      "id": "dra",
+      "name": "Douay-Rheims Bible",
+      "language": "en",
+      "year": 1899,
+      "license": "public-domain"
     }
   ]
 }
